@@ -35,11 +35,11 @@ Infinity делать не нужно, однако, в случае если б
     "use strict";
 
     /**
-           * Функция складывает два числа.
-           * @param {number} num1 - первое число.
-           * @param {number} num2 - второе число.
-           * @return {number} сумма двух чисел.
-           */
+       * Функция складывает два числа.
+       * @param {number} num1 - первое число.
+       * @param {number} num2 - второе число.
+       * @return {number} сумма двух чисел.
+       */
     function sum(num1, num2) {
       return num1 + num2;
     }
@@ -66,7 +66,7 @@ Infinity делать не нужно, однако, в случае если б
        * Функция перемножает два числа.
        * @param {number} num1 - первое число.
        * @param {number} num2 - второе число.
-       * @return {number} произведение двух чисел.
+       * @return {number} результат произведения двух чисел.
        */
     function multiplication(num1, num2) {
       return num1 * num2;
@@ -76,7 +76,7 @@ Infinity делать не нужно, однако, в случае если б
        * Функция делит два числа.
        * @param {number} num1 - первое число.
        * @param {number} num2 - второе число.
-       * @return {number} деление двух чисел.
+       * @return {number} результат деления двух чисел.
        */
     function division(num1, num2) {
       return num1 / num2;
@@ -87,7 +87,7 @@ Infinity делать не нужно, однако, в случае если б
          * @param {number} arg1 - первое число.
          * @param {number} arg2 - второе число.
          * @param {string} operation - оператор "+", "-", "*" или "/".
-         * @return {number} деление двух чисел.
+         * @return {number} результат вычислений.
          */
     function mathOperation(arg1, arg2, operation) {
       if (operation === "+") {
@@ -103,8 +103,29 @@ Infinity делать не нужно, однако, в случае если б
       }
     }
 
+    /*
+    Та же функция но через switch case
+    function mathOperation(arg1, arg2, operation) {
+      switch (operation) {
+        case "+":
+          return sum(arg1, arg2);
+        case "-":
+          return difference(arg1, arg2);
+        case "*":
+          return multiplication(arg1, arg2);
+        case "/":
+          return division(arg1, arg2);
+        default:
+          return NaN;
+      }
+    }
+    */
+
     console.log(mathOperation(1, 7, "-")); // 6
-    console.log(mathOperation(5, 3, ":)")); // NaN
+    console.log(mathOperation(2, 4, "+")); // 6
+    console.log(mathOperation(2, 3, "*")); // 6
+    console.log(mathOperation(12, 2, "/")); // 6
+    console.log(mathOperation(4, 1, "#")); // NaN
 
   </script>
 </body>
