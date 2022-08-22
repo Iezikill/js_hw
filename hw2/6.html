@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
+  <!--
 Необязательное задание.
 
 Необходимо реализовать функцию, которая будет принимать первым аргументом
@@ -22,25 +24,37 @@ console.log(declinationOfNumber(5, "стул", "стула", "стульев"));
 Функция должна работать с любым словом и любым целым положительным числом.
 Все аргументы, которые будут передаваться функции будут верны.
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
 
-  function declinationOfNumber(count, one, two, five) {
+    /**
+       * Функция подбирает корректное склонение слова в зависимости от числа.
+       * @param {number} count - число, к которому подбирается склонение слова.
+       * @param {string} one - слово для числа, оканчивающегося на 1 (кроме *11).
+       * @param {string} two - слово для числа, оканчивающегося на 2-4.
+       * @param {string} five - слово для остальных чисел.
+       * @return {string} правильное склонение слова для числа.
+       */
+    function declinationOfNumber(count, one, two, five) {
+      const lastDigit100 = count % 100;
+      const lastDigit10 = lastDigit100 % 10;
+      if (lastDigit100 >= 5 && lastDigit100 <= 20) {
+        return five;
+      } else if (lastDigit10 > 1 && lastDigit10 < 5) {
+        return two;
+      } else if (lastDigit10 === 1) {
+        return one;
+      } else {
+        return five;
+      }
+    }
 
-  }
+    const applesNumber = 44;
+    const word = declinationOfNumber(applesNumber, "яблоко", "яблока", "яблок");
 
-  // Число яблок, можно пробовать поставить свое целое, положительное число.
-  const applesNumber = 5;
-  // Получаем от функции одно из слов "яблоко", "яблока" или "яблок".
-  const word = declinationOfNumber(applesNumber, "яблоко", "яблока", "яблок");
-  // Выводим корректную строку, например:
-  // "У меня есть 1 яблоко."
-  // "У меня есть 2 яблока."
-  // "У меня есть 5 яблок."
-  // При любом целом, положительном числе в applesNumber, строка, которая
-  // выводится в console.log, должна иметь правильное склонение слова "яблоко".
-  console.log(`У меня есть ${applesNumber} ${word}.`);
+    console.log(`У меня есть ${applesNumber} ${word}.`);
 
-</script>
+  </script>
 </body>
+
 </html>
