@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
+  <!--
 Обязательное задание.
 
 Необходимо скопировать и вставить в данный скрипт все функции из 4 задания.
@@ -29,10 +31,82 @@ Infinity делать не нужно, однако, в случае если б
 
 Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
-</script>
+    /**
+           * Функция складывает два числа.
+           * @param {number} num1 - первое число.
+           * @param {number} num2 - второе число.
+           * @return {number} сумма двух чисел.
+           */
+    function sum(num1, num2) {
+      return num1 + num2;
+    }
+
+    /**
+       * Функция вычитает из большего числа меньшее.
+       * @param {number} num1 - первое число.
+       * @param {number} num2 - второе число.
+       * @return {number} разница двух чисел.
+       */
+    function difference(num1, num2) {
+      if (num1 > num2) {
+        return num1 - num2;
+      } else if (num1 < num2) {
+        return num2 - num1;
+      } else if (num1 = num2) {
+        return 0;
+      } else {
+        console.log("Error");
+      }
+    }
+
+    /**
+       * Функция перемножает два числа.
+       * @param {number} num1 - первое число.
+       * @param {number} num2 - второе число.
+       * @return {number} произведение двух чисел.
+       */
+    function multiplication(num1, num2) {
+      return num1 * num2;
+    }
+
+    /**
+       * Функция делит два числа.
+       * @param {number} num1 - первое число.
+       * @param {number} num2 - второе число.
+       * @return {number} деление двух чисел.
+       */
+    function division(num1, num2) {
+      return num1 / num2;
+    }
+
+    /**
+         * Функция производит вычисления (+,-,*,/) для двух чисел.
+         * @param {number} arg1 - первое число.
+         * @param {number} arg2 - второе число.
+         * @param {string} operation - оператор "+", "-", "*" или "/".
+         * @return {number} деление двух чисел.
+         */
+    function mathOperation(arg1, arg2, operation) {
+      if (operation === "+") {
+        return sum(arg1, arg2);
+      } else if (operation === "-") {
+        return difference(arg1, arg2);
+      } else if (operation === "*") {
+        return multiplication(arg1, arg2);
+      } else if (operation === "/") {
+        return division(arg1, arg2);
+      } else {
+        return NaN;
+      }
+    }
+
+    console.log(mathOperation(1, 7, "-")); // 6
+    console.log(mathOperation(5, 3, ":)")); // NaN
+
+  </script>
 </body>
+
 </html>
