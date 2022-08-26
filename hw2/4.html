@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
+  <!--
 Обязательное задание.
 
 Необходимо реализовать четыре функции, каждая функция должна принимать по два
@@ -28,10 +30,58 @@
 
 Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
-</script>
+    /**
+     * Функция складывает два числа.
+     * @param {number} num1 - первое число.
+     * @param {number} num2 - второе число.
+     * @return {number} сумма двух чисел.
+     */
+    function sum(num1, num2) {
+      return num1 + num2;
+    }
+
+    /**
+     * Функция вычитает из большего числа меньшее.
+     * @param {number} num1 - первое число.
+     * @param {number} num2 - второе число.
+     * @return {number} разница двух чисел.
+     */
+    function difference(num1, num2) {
+      if (num1 > num2) {
+        return num1 - num2;
+      }
+      return num2 - num1;
+    }
+
+    /**
+     * Функция перемножает два числа.
+     * @param {number} num1 - первое число.
+     * @param {number} num2 - второе число.
+     * @return {number} произведение двух чисел.
+     */
+    function multiplication(num1, num2) {
+      return num1 * num2;
+    }
+
+    /**
+     * Функция делит два числа.
+     * @param {number} num1 - первое число.
+     * @param {number} num2 - второе число.
+     * @return {number} деление двух чисел.
+     */
+    function division(num1, num2) {
+      return num1 / num2;
+    }
+
+    console.log(sum(2, 6));
+    console.log(difference(2, 10));
+    console.log(multiplication(2, 4));
+    console.log(division(16, 2));
+
+  </script>
 </body>
+
 </html>
