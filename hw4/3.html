@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
+  <!--
 Необязательное задание.
 
 Необходимо создать функцию getDigitsOfNumber, которая принимает целое
@@ -28,10 +30,30 @@
 Обратите внимание на слова "от 0 до 1000", это означает диапазон [0, 999], что
 можно прочитать как "от нуля до 999 включительно".
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
-</script>
+    /**
+     * Функция разделяет число на сотни, десятки и единицы.
+     * @param {number} num - целое положительное число в диапазоне от 0 до 999.
+     * @returns {object} - объект с тремя свойствами: units, dozens, hundreds 
+     * или пустой объект.
+     */
+
+    function getDigitsOfNumber(num) {
+      if (!Number.isInteger(num) || num < 0 || num > 999) {
+        console.error('Something wrong');
+        return {};
+      }
+      return {
+        units: num % 10,
+        dozens: Math.trunc(num / 10) % 10,
+        hundreds: Math.trunc(num / 100) % 10,
+      }
+    }
+
+    console.log(getDigitsOfNumber(812));
+  </script>
 </body>
+
 </html>
