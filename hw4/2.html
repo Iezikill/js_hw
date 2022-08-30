@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
+  <!--
 Обязательное задание.
 
 Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
@@ -47,10 +49,84 @@
 что-нибудь пропустить.
 4. Если непонятно условие - задайте вопрос.
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
-</script>
+    //----------------------------ES5----------------------------------------
+    function PostES5(authorName, text) {
+      this.authorName = authorName;
+      this.text = text;
+      this.dateOfLastChange = new Date();
+    }
+
+    PostES5.prototype.edit = function (text) {
+      this.text = text;
+      this.dateOfLastChange = new Date();
+    };
+
+    const post1 = new PostES5('Степан', 'Основы языка Java');
+    console.log(`${post1.authorName} выложил статью "${post1.text}". \
+Дата последнего изменения: ${post1.dateOfLastChange}.`);
+    post1.edit('Основы языка JavaScript');
+    console.log(`Текст статьи был изменен на "${post1.text}". \
+Дата последнего изменения: ${post1.dateOfLastChange}.`);
+
+    function AttachedPostES5(authorName, text) {
+      PostES5.call(this, authorName, text);
+      this.highlighted = false;
+    }
+
+    AttachedPostES5.prototype = Object.create(PostES5.prototype);
+    AttachedPostES5.prototype.constructor = AttachedPostES5;
+
+    AttachedPostES5.prototype.makeTextHighlighted = function () {
+      this.highlighted = true;
+      this.dateOfLastChange = new Date();
+    };
+
+    const attachedPost1 = new AttachedPostES5('Евгений', 'Конструкция Boeing 737');
+    console.log(`${attachedPost1.authorName} выложил статью "${attachedPost1.text}". \
+Дата последнего изменения: ${attachedPost1.dateOfLastChange}.`);
+    attachedPost1.makeTextHighlighted();
+    console.log(attachedPost1);
+
+    //----------------------------ES6----------------------------------------
+    class PostES6 {
+      constructor(authorName, text) {
+        this.authorName = authorName;
+        this.text = text;
+        this.dateOfLastChange = new Date();
+      }
+
+      edit(text) {
+        this.text = text;
+        this.dateOfLastChange = new Date();
+      }
+    }
+
+    const post2 = new PostES6('Кирилл', 'Как правильно готовить утку');
+    console.log(`${post2.authorName} выложил статью "${post2.text}". \
+Дата последнего изменения: ${post2.dateOfLastChange}.`);
+    post2.edit('Как правильно готовить кролика');
+    console.log(`Текст статьи был изменен на "${post2.text}". \
+Дата последнего изменения: ${post2.dateOfLastChange}.`);
+
+    class AttachedPostES6 extends PostES6 {
+      highlighted = false;
+
+      makeTextHighlighted() {
+        this.highlighted = true;
+        this.dateOfLastChange = new Date();
+      }
+    }
+
+    const attachedPost2 = new AttachedPostES5('Антон', 'Конструкция Airbus 320neo');
+    console.log(`${attachedPost2.authorName} выложил статью "${attachedPost2.text}". \
+Дата последнего изменения: ${attachedPost2.dateOfLastChange}.`);
+    attachedPost2.makeTextHighlighted();
+    console.log(attachedPost2);
+
+  </script>
 </body>
+
 </html>
