@@ -27,9 +27,10 @@
       this.name = name;
       this.price = price;
     }
+
     ProductES5.prototype.make25Discount = function () {
       this.price *= 0.75;
-    }
+    };
 
     const product1 = new ProductES5('Шоколадный батончик Twix', 50);
     console.log(`${product1.name} стоит ${product1.price} рублей.`);
@@ -43,6 +44,7 @@
         this.name = name;
         this.price = price;
       }
+
       make25Discount() {
         this.price *= 0.75;
       }

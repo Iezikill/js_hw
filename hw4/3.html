@@ -39,7 +39,6 @@
      * @returns {object} - объект с тремя свойствами: units, dozens, hundreds 
      * или пустой объект.
      */
-
     function getDigitsOfNumber(num) {
       if (!Number.isInteger(num) || num < 0 || num > 999) {
         console.error('Something wrong');
@@ -49,7 +48,7 @@
         units: num % 10,
         dozens: Math.trunc(num / 10) % 10,
         hundreds: Math.trunc(num / 100) % 10,
-      }
+      };
     }
 
     console.log(getDigitsOfNumber(812));

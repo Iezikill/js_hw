@@ -58,10 +58,11 @@
       this.text = text;
       this.dateOfLastChange = new Date();
     }
+
     PostES5.prototype.edit = function (text) {
       this.text = text;
       this.dateOfLastChange = new Date();
-    }
+    };
 
     const post1 = new PostES5('Степан', 'Основы языка Java');
     console.log(`${post1.authorName} выложил статью "${post1.text}". \
@@ -80,6 +81,7 @@
 
     AttachedPostES5.prototype.makeTextHighlighted = function () {
       this.highlighted = true;
+      this.dateOfLastChange = new Date();
     };
 
     const attachedPost1 = new AttachedPostES5('Евгений', 'Конструкция Boeing 737');
@@ -95,6 +97,7 @@
         this.text = text;
         this.dateOfLastChange = new Date();
       }
+
       edit(text) {
         this.text = text;
         this.dateOfLastChange = new Date();
@@ -109,13 +112,11 @@
 Дата последнего изменения: ${post2.dateOfLastChange}.`);
 
     class AttachedPostES6 extends PostES6 {
-      constructor(authorName, text) {
-        super(authorName, text);
-        this.highlighted = false;
-      }
+      highlighted = false;
 
       makeTextHighlighted() {
         this.highlighted = true;
+        this.dateOfLastChange = new Date();
       }
     }
 
