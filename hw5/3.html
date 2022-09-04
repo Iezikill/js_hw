@@ -81,9 +81,9 @@
     */
     document.addEventListener('click', event => {
       if (event.target.className === "super_element") {
-        console.log(`Класс "super_element" присутствует в элементе ${event.target.tagName}.`);
+        console.log(`Класс "super_element" присутствует в элементе ${event.target.tagName.toLowerCase()}.`);
       } else {
-        console.log(`Класс "super_element" отсутствует в элементе ${event.target.tagName}.`);
+        console.log(`Класс "super_element" отсутствует в элементе ${event.target.tagName.toLowerCase()}.`);
       }
     });
 
