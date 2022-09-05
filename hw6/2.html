@@ -68,7 +68,9 @@
     должно моментально отображаться в span. То есть при печати в input'е тег span
     также должен меняться.
     */
-
+    document.querySelector('#from').addEventListener('input', event => {
+      document.querySelector('span').textContent = event.target.value;
+    });
 
     /*
     2. При клике на кнопку с классом messageBtn необходимо элементу с классом
@@ -76,7 +78,12 @@
     1) добавить два класса: animate__animated и animate__fadeInLeftBig
     2) поставить данному элементу стиль visibility в значение 'visible'.
      */
-
+    document.querySelector('.messageBtn').addEventListener('click', () => {
+      const messEl = document.querySelector('.message');
+      messEl.classList.add('animate__animated');
+      messEl.classList.add('animate__fadeInLeftBig');
+      messEl.style.visibility = 'visible';
+    });
 
     /*
     3. Необходимо при отправке формы проверить, заполнены ли все поля в этой
@@ -89,7 +96,23 @@
     данному полю).
     Если поле было чем-либо заполнено, подсветку (класс error) необходимо убрать.
      */
+    const formEl = document.querySelector('form');
+    const formControlEls = document.querySelectorAll('.form-control');
+    formEl.addEventListener('submit', event => {
+      formControlEls.forEach(el => {
+        if (el.value === '') {
+          event.preventDefault();
+          el.classList.add('error');
+        }
+      });
+    });
 
+    formEl.addEventListener('input', event => {
+      if (event.target.value === '') {
+        event.target.classList.add('error');
+      }
+      event.target.classList.remove('error');
+    });
 
   </script>
 </body>
