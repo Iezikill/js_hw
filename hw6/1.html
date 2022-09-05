@@ -75,6 +75,11 @@
     должен правильно работать код из 3-го задания.
      */
     const copiedProduct = document.querySelector('.product').cloneNode(true);
+    copiedProduct
+      .querySelector('img')
+      .src = 'https://picsum.photos/id/1080/200/300';
+    copiedProduct.querySelector('.productName').textContent = 'Товар 4';
+    document.querySelector('.product:last-of-type').replaceWith(copiedProduct);
 
 
 
@@ -82,7 +87,7 @@
     5. По истечении 2 секунд с момента открытия страницы первый товар должен быть
     удален из html.
      */
-
+    setTimeout(() => document.querySelector('.product').remove(), 2000);
 
   </script>
 </body>
