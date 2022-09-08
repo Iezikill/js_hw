@@ -27,7 +27,12 @@
      * параметр "n"
      */
     function descendingOrder(n) {
-
+      if (!n.isInteger && n < 0) {
+        console.error('Wrong number!');
+      } else {
+        n = n.toString();
+        return n.split('').sort((a, b) => b - a).join('');
+      }
     }
 
     console.log(descendingOrder(42145)); // 54421
