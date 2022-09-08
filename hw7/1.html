@@ -58,7 +58,6 @@
     общего между данной в html версткой и объектом ниже).
     */
 
-    //только это сама сделала
     const panelText = {
       T1: "Уверен, ты справишься с этим заданием!",
       X6: "Знаю, программирование это нелегко.",
@@ -86,13 +85,12 @@
     шрифт у текста, никакого резкого увеличения шрифта не должно быть при
     перетаскивании ползунка.
      */
+    const inputDiv = document.querySelector('#inputDiv');
 
-    const divEl = document.getElementById('inputDiv');
-    const inputEl = document.querySelector('input');
-    inputEl.value = Number.parseInt(getComputedStyle(divEl).fontSize).toString();
-    inputEl.addEventListener('input', event => {
-      divEl.style.fontSize = `${event.target.value}px`;
+    document.querySelector('input').addEventListener('input', event => {
+      inputDiv.style.fontSize = `${event.target.value}px`;
     });
+
   </script>
 </body>
 
