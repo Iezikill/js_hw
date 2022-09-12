@@ -25,11 +25,67 @@ document.querySelector('.featuredItems').addEventListener('click', event => {
   }
 });
 
+const cartSpanEl = document.querySelector('.cartIconWrap span');
+const basketTotalValueEl = document.querySelector('.basketTotalValue');
+
+console.log(cartSpanEl);
 function addToCart(id, name, price) {
-  /*В объект basket добавить новый продукт или изменить имеющийся.
-  В html отрисовать новое количество добавленных товаров у значка корзины.
-  Отрисовать новую общую стоимость товаров в корзине.
-  Отрисовать правильно строку в окне корзины, в которой записаны все данные
-  о товаре.
-  */
+  if (!(id in basket)) {
+    basket[id] = { id, name, price, count: 0 };
+  }
+  basket[id].count++;
+
+  cartSpanEl.textContent = getTotalProductCount();
+  basketTotalValueEl.textContent = getTotalProductPrice();
+  showProductInCart(id);
+}
+
+function getTotalProductCount() {
+  const products = Object.values(basket);
+  let count = 0;
+  for (const prod of products) {
+    count += prod.count;
+  }
+  return count;
+}
+
+function getTotalProductPrice() {
+  const products = Object.values(basket);
+  let count = 0, price = 0;
+  for (const prod of products) {
+    price += prod.count * prod.price;
+  }
+  return price;
+}
+
+function showProductInCart(productId) {
+  const basketRowEl = basketEl
+    .querySelector(`.basketRow[data-id="${productId}"]`);
+  if (!basketRowEl) {
+    showNewProductInCart(productId);
+    return;
+  }
+  const product = basket[productId];
+  basketRowEl.querySelector('.productCount').textContent = product.count;
+  basketRowEl
+    .querySelector('.productTotalRow')
+    .textContent = (product.price * product.count).toFixed(2);
+}
+
+const basketTotalEl = document.querySelector('.basketTotal');
+
+function showNewProductInCart(productId) {
+  const productRow = `
+    <div class="basketRow" data-id="${productId}">
+      <div>${basket[productId].name}</div>
+      <div>
+        <span class="productCount">${basket[productId].count}</span> шт.
+      </div>
+      <div>$${basket[productId].price}</div>
+      <div>
+        $<span class="productTotalRow">${(basket[productId].price * basket[productId].count).toFixed(2)}</span>
+      </div>
+    </div>
+    `;
+  basketTotalEl.insertAdjacentHTML("beforebegin", productRow);
 }
