@@ -9,26 +9,26 @@ document.querySelector('.cartIconWrap').addEventListener('click', () => {
 const basket = {};
 
 document.querySelector('.featuredItems').addEventListener('click', event => {
-  if (event.target.tagName !== 'BUTTON') {
+  if (!event.target.closest('.addToCart')) {
     return;
-  } else {
-    /*по-любому есть способ проще найти родителя с классом featuredItem,
-    но я пока не могу до него додуматься.
-    Уверена, посмотрев видео-разбор я исправлю этот "треш", но пока это
-    единственное решение, которое пришло мне в голову =D
-    */
-    const featuredItemEl = event.target.parentNode.parentNode.parentNode;
-    const id = +featuredItemEl.dataset.id;
-    const name = featuredItemEl.dataset.name;
-    const price = +featuredItemEl.dataset.price;
-    addToCart(id, name, price);
   }
+  const featuredItemEl = event.target.closest('.featuredItem');
+  const id = +featuredItemEl.dataset.id;
+  const name = featuredItemEl.dataset.name;
+  const price = +featuredItemEl.dataset.price;
+  addToCart(id, name, price);
 });
 
 const cartSpanEl = document.querySelector('.cartIconWrap span');
 const basketTotalValueEl = document.querySelector('.basketTotalValue');
 
-console.log(cartSpanEl);
+
+/**
+ * Функция добавляет продукт в корзину.
+ * @param {number} id - id продукта.
+ * @param {string} name - название продукта.
+ * @param {number} price - цена продукта.
+ */
 function addToCart(id, name, price) {
   if (!(id in basket)) {
     basket[id] = { id, name, price, count: 0 };
@@ -36,10 +36,14 @@ function addToCart(id, name, price) {
   basket[id].count++;
 
   cartSpanEl.textContent = getTotalProductCount();
-  basketTotalValueEl.textContent = getTotalProductPrice();
+  basketTotalValueEl.textContent = getTotalProductPrice().toFixed(2);
   showProductInCart(id);
 }
 
+/**
+ * Функция считает и возвращает общее количество продуктов в корзине.
+ * @return {number} - количество продуктов в корзине.
+ */
 function getTotalProductCount() {
   const products = Object.values(basket);
   let count = 0;
@@ -49,6 +53,10 @@ function getTotalProductCount() {
   return count;
 }
 
+/**
+ * Функция считает и возвращает общую стоимость добавленных продуктов в корзине.
+ * @return {number} - общая стоимость всех продуктов в корзине.
+ */
 function getTotalProductPrice() {
   const products = Object.values(basket);
   let count = 0, price = 0;
@@ -58,6 +66,10 @@ function getTotalProductPrice() {
   return price;
 }
 
+/**
+ * Функция отображает в корзине информацию о добавленном продукте.
+ * @param {number} productId - id продукта.
+ */
 function showProductInCart(productId) {
   const basketRowEl = basketEl
     .querySelector(`.basketRow[data-id="${productId}"]`);
@@ -74,6 +86,10 @@ function showProductInCart(productId) {
 
 const basketTotalEl = document.querySelector('.basketTotal');
 
+/**
+ * Функция отображает первый раз добавленный товар в корзине.
+ * @param {number} productId - id товара.
+ */
 function showNewProductInCart(productId) {
   const productRow = `
     <div class="basketRow" data-id="${productId}">
@@ -83,7 +99,8 @@ function showNewProductInCart(productId) {
       </div>
       <div>$${basket[productId].price}</div>
       <div>
-        $<span class="productTotalRow">${(basket[productId].price * basket[productId].count).toFixed(2)}</span>
+        $<span class="productTotalRow">${(basket[productId]
+      .price * basket[productId].count).toFixed(2)}</span>
       </div>
     </div>
     `;
